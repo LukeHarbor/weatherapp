@@ -1,0 +1,318 @@
+* {
+  box-sizing: border-box;
+  font-family: "Rubik", sans-serif;
+}
+
+#root {
+  width: 100%;
+}
+
+.appWrap {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  min-height: 100vh;
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+  background: #f4faff;
+}
+.appWrap > div {
+  position: relative;
+}
+.appWrap h1,
+.appWrap h2,
+.appWrap p {
+  width: 100%;
+  text-align: center;
+}
+.appWrap .info {
+  min-height: 100%;
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+}
+.appWrap .info h1 {
+  margin: 10px;
+}
+.appWrap .rightWrap {
+  min-height: 100%;
+  width: 68%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.appWrap .rightWrap .map {
+  width: 100%;
+  height: 54%;
+}
+.appWrap .rightWrap .map div {
+  border-radius: 8px;
+  overflow: hidden;
+}
+.appWrap .rightWrap .map .mapboxgl-control-container {
+  display: none;
+}
+.appWrap .rightWrap .map .map-info {
+  max-width: calc(100% - 40px);
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  border-radius: 8px;
+  padding: 10px;
+  background-color: #005F73;
+  z-index: 2;
+  text-align: center;
+}
+.appWrap .rightWrap .chart {
+  width: 100%;
+  height: 40%;
+  padding-left: 0px;
+}
+.appWrap .rightWrap .chart .chart-wrapper {
+  position: relative;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.appWrap .rightWrap .chart .chart-wrapper::-webkit-scrollbar {
+  display: none;
+}
+.appWrap .rightWrap .chart .scroll-arrow {
+  position: absolute;
+  bottom: 0%;
+  background-color: rgba(66, 122, 161, 0.7);
+  color: white;
+  border: none;
+  padding: 0.5rem;
+  font-size: 16px;
+  z-index: 10;
+  cursor: pointer;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 30px;
+  width: 30px;
+}
+.appWrap .rightWrap .chart .left {
+  left: 20px;
+}
+.appWrap .rightWrap .chart .right {
+  right: 0;
+}
+.appWrap .rightWrap .chart p {
+  width: 100%;
+  text-align: center;
+}
+.appWrap .rightWrap .chart .scroll-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.3);
+  border: none;
+  color: white;
+  padding: 8px;
+  cursor: pointer;
+  border-radius: 50%;
+  z-index: 2;
+}
+.appWrap .rightWrap .chart .scroll-btn.left {
+  left: 4px;
+}
+.appWrap .rightWrap .chart .scroll-btn.right {
+  right: 4px;
+}
+.appWrap .box {
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: #05668D;
+  border-radius: 16px;
+  box-shadow: 0 10px 20px 1px rgba(0, 0, 0, 0.4);
+}
+.appWrap .box .search-box {
+  border-radius: 8px;
+  padding: 20px;
+  background-color: #427AA1;
+}
+.appWrap .box .search-box .search-wrap {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.appWrap .box .search-box .search-wrap input {
+  padding: 10px;
+  background: white;
+  width: 65%;
+  box-sizing: border-box;
+  color: black;
+  border-radius: 0;
+  outline: none;
+  border: #05668D 2px solid;
+  border-radius: 4px 0 0 4px;
+  transition: all ease-in-out 0.2s;
+}
+.appWrap .box .search-box .search-wrap button {
+  width: 35%;
+  border-radius: 0;
+  background-color: #05668D;
+  border-radius: 0 4px 4px 0;
+  transition: all ease-in-out 0.2s;
+}
+.appWrap .box .search-box .search-wrap button:hover, .appWrap .box .search-box .search-wrap button:focus-visible {
+  outline: 0;
+}
+.appWrap .box .search-box .search-wrap:hover button,
+.appWrap .box .search-box .search-wrap:hover input {
+  border-color: white;
+}
+.appWrap .box .search-box .switch-wrap {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+.appWrap .box .search-box .switch-wrap .switch {
+  position: relative;
+  display: inline-block;
+  width: 62px;
+  height: 25px;
+}
+.appWrap .box .search-box .switch-wrap .switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.appWrap .box .search-box .switch-wrap .switch .slider {
+  position: absolute;
+  cursor: pointer;
+  background-color: #ccc;
+  border-radius: 34px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transition: 0.4s;
+}
+.appWrap .box .search-box .switch-wrap .switch .slider::before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+.appWrap .box .search-box .switch-wrap .switch input:checked + .slider {
+  background-color: #05668D;
+}
+.appWrap .box .search-box .switch-wrap .switch input:checked + .slider::before {
+  transform: translateX(36px);
+}
+.appWrap .box .search-box .switch-wrap .switch .labels {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  font-weight: bold;
+  color: #fff;
+  pointer-events: none;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+.appWrap .box .search-box .switch-wrap .switch .labels span:first-of-type {
+  position: absolute;
+  left: 0;
+  transform: translate(-140%, 0);
+}
+.appWrap .box .search-box .switch-wrap .switch .labels span:last-of-type {
+  position: absolute;
+  right: 0;
+  transform: translate(140%, 0);
+}
+.appWrap .box .temp-info {
+  width: 100%;
+  border-radius: 8px;
+  background-color: #427AA1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  justify-content: center;
+}
+.appWrap .box .temp-info h2 {
+  font-size: 32px;
+  margin: 0px;
+}
+.appWrap .box .temp-info h3 {
+  font-size: 60px;
+  margin-bottom: 0px;
+  margin-top: 10px;
+  line-height: 1em;
+}
+.appWrap .box .temp-info .feeling {
+  margin-top: 0px;
+}
+.appWrap .box .temp-info .graphs {
+  text-align: center;
+  justify-content: center;
+}
+.appWrap .box .temp-info .graphs text {
+  fill: white !important;
+}
+.appWrap .box .temp-info .graphs .wind path {
+  stroke: white;
+}
+
+@media (min-width: 900px) and (max-width: 1124px) {
+  .search-wrap {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .search-wrap input {
+    padding: 10px;
+    background: white;
+    width: 100% !important;
+    box-sizing: border-box;
+    color: black;
+    border-radius: 0;
+    outline: none;
+    border: #05668D 2px solid;
+    border-radius: 4px 4px 0 0 !important;
+    transition: all ease-in-out 0.2s;
+  }
+  .search-wrap button {
+    width: 100% !important;
+    border-radius: 0;
+    background-color: #05668D;
+    border-radius: 0 0 4px 4px !important;
+  }
+}
+@media (max-width: 900px) {
+  .appWrap {
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  .appWrap .box {
+    width: 100% !important;
+  }
+  .appWrap .rightWrap {
+    width: 100% !important;
+    gap: 20px;
+  }
+  .appWrap .rightWrap .map {
+    order: 2;
+    min-height: 90vh;
+    position: relative;
+  }
+  .appWrap .rightWrap .chart {
+    min-height: 250px;
+  }
+}/*# sourceMappingURL=App.css.map */
